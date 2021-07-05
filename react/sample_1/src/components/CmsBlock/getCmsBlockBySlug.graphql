@@ -1,0 +1,13 @@
+query getCmsBlockBySlug($slug: String) {
+  getCmsBlockBySlug(slug: $slug) {
+    id
+    name
+    slug
+    active
+    lang
+    region
+    content
+    createdAt
+    updatedAt
+  }
+}
