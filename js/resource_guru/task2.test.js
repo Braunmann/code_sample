@@ -32,6 +32,13 @@ describe('(Task 2) Binary Tree', () => {
         });
     });
 
+    test("Unknown operation throws TypeError", () => {
+        const t = () => {
+            NodeFactory("H", 9, 3);
+        }
+        expect(t).toThrow(TypeError);
+    });
+
     describe('Node mul 4 * 3 = 12', () => {
         const node = NodeFactory("x", 4, 3);
         test('Should be presented as (4 x 3)', () => {

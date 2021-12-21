@@ -14,42 +14,30 @@ class AbstractNode {
         return `(${this.left.toString()} ${this.operator.textRepresentation} ${this.right.toString()})`;
     };
 
+    // The requirements are that assertion can not be change, we have to leave the result() method
     result() {
         return this.valueOf();
     }
 }
 
 const NodeFactory = (operationType, left, right) => {
-    // In Type script will be good to create interface for the operators
-    const addOperator = {
-        operation: (l, r) => l + r,
-        textRepresentation: '+'
-    }
-    const subOperator = {
-        operation: (l, r) => l - r,
-        textRepresentation: '-'
-    }
-    const divOperator = {
-        operation: (l, r) => l / r,
-        textRepresentation: '÷'
-    }
-    const mulOperator = {
-        operation: (l, r) => l * r,
-        textRepresentation: 'x'
-    }
+    const operators = new Map();
+    operators.set('+', (l, r) => l + r);
+    operators.set('-', (l, r) => l - r);
+    operators.set('x', (l, r) => l * r);
+    operators.set('÷', (l, r) => l / r);
 
-    switch (operationType) {
-        case "+":
-            return new AbstractNode(addOperator, left, right);
-        case "-":
-            return new AbstractNode(subOperator, left, right);
-        case "÷":
-            return new AbstractNode(divOperator, left, right);
-        case "x":
-            return new AbstractNode(mulOperator, left, right);
-        default:
-            // TODO Throw exception?
+    // If operation in known
+    if(operators.has(operationType)) {
+        // Factory Node for operation
+        const operator = {
+            operation: operators.get(operationType),
+            textRepresentation: operationType
+        }
+        return new AbstractNode(operator, left, right);
     }
+    // Otherwise throw an exception
+    throw new TypeError(`Invalid operationType "${operationType}"`)
 }
 
 module.exports = {
