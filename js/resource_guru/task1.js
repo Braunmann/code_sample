@@ -5,21 +5,11 @@ function flatArray(arr) {
     // Create empty array where flattened data will be pushed
     const flattenedArray = [];
 
-    // Iterate through whole array using classic 'for' loop
-    for (let i = 0; i < arr.length; i++) {
-        const item = arr[i];
-        // Check if item is an array
-        if (Array.isArray(item)) {
-            // If so, call the recursion
-            const recursionResults = flatArray(item);
-            // Decompose and push to 'flattenedArray'
-            flattenedArray.push(...recursionResults);
-        } else {
-            // If not pass element to flattenArray
-            flattenedArray.push(item);
-        }
-    };
-
+    // Iterate through whole array using classic 'forEach' loop
+    arr.forEach(item => {
+        // Do recursion and decompose to concat array if item is a type of array, otherwise push to flattened array
+        Array.isArray(item) ? flattenedArray.push(...flatArray(item)) : flattenedArray.push(item);
+    });
     return flattenedArray;
 }
 
