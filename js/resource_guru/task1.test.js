@@ -1,8 +1,24 @@
 const flatArray = require('./task1.js');
 
-describe('Test suite for task 1', () => {
-    test('[ 1, [ 2, [ 3 ] ], 4 ] -> [ 1, 2, 3, 4 ]', () => {
+describe('(Task 1) Flattening array', () => {
+    test('When [ 1, [ 2, [ 3 ] ], 4 ] given, returns [ 1, 2, 3, 4 ]', () => {
         const nestedArray = [ 1, [ 2, [ 3 ] ], 4 ];
         expect(flatArray(nestedArray)).toStrictEqual([ 1, 2, 3, 4 ]);
+    });
+    test('When [ 1, [ 2, [ 3, 4 ] ], 4, 5 ] given, returns [ 1, 2, 3, 4, 4, 5 ]', () => {
+        const nestedArray = [ 1, [ 2, [ 3, 4 ] ], 4, 5 ];
+        expect(flatArray(nestedArray)).toStrictEqual([ 1, 2, 3, 4, 4, 5 ]);
+    });
+    test('When array with string [ 1, [ \'some string\', [ 3, 4 ] ], 4, 5 ]  given, returns [ 1, \'some string\', 3, 4, 4, 5 ]', () => {
+        const nestedArray = [ 1, [ 'some string', [ 3, 4 ] ], 4, 5 ];
+        expect(flatArray(nestedArray)).toStrictEqual([ 1, 'some string', 3, 4, 4, 5 ]);
+    });
+    test('When edge case with one element [ 1 ] given, returns [ 1 ]', () => {
+        const nestedArray = [ 1 ];
+        expect(flatArray(nestedArray)).toStrictEqual([ 1 ]);
+    });
+    test('When edge case empty array [ ] given, returns [ ]', () => {
+        const nestedArray = [ ];
+        expect(flatArray(nestedArray)).toStrictEqual([ ]);
     });
 });
