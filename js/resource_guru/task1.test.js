@@ -21,4 +21,10 @@ describe('(Task 1) Flattening array', () => {
         const nestedArray = [ ];
         expect(flatArray(nestedArray)).toStrictEqual([ ]);
     });
+    test('When non array is given, returns [ ]', () => {
+        const nestedArray = [ ];
+        expect(flatArray('string')).toStrictEqual([ ]);
+        expect(flatArray(1)).toStrictEqual([ ]);
+        expect(flatArray({})).toStrictEqual([ ]);
+    });
 });
