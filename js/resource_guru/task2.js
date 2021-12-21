@@ -3,6 +3,7 @@ const AbstractNode = (operator, left, right) => {
     const isNode = n => typeof(n) === 'object' && n.left && n.right
 
     const result = function () {
+        // Check both sides if it's node then call recursive to reduce to Number
         const l = isNode(left) ? left.result() : left,
               r = isNode(right) ? right.result() : right;
 
