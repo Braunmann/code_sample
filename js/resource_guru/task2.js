@@ -1,31 +1,24 @@
 const Node = (operator, value, left, right) => {
+    const operatorsDict = {
+        '+': '+',
+        '-': '-',
+        'x': '*',
+        '÷': '/',
+    };
+
     const result = function () {
-        switch (this.operator) {
-            case "+":
-                return left.result() + right.result();
-            case "-":
-                return left.result() - right.result();
-            case "x":
-                return left.result() * right.result();
-            case "÷":
-                return left.result() / right.result();
-            default:
-                return value;
+        if(operatorsDict[this.operator] !== undefined) {
+            return eval('left.result()' + operatorsDict[this.operator] + 'right.result()');
+        } else {
+            return value;
         }
     };
 
     const toString = function () {
-        switch (this.operator) {
-            case "+":
-                return `(${left.toString()} + ${right.toString()})`;
-            case "-":
-                return `(${left.toString()} - ${right.toString()})`;
-            case "x":
-                return `(${left.toString()} x ${right.toString()})`;
-            case "÷":
-                return `(${left.toString()} ÷ ${right.toString()})`;
-            default:
-                return value.toString();
+        if(operatorsDict[this.operator] !== undefined) {
+            return `(${left.toString()} ${this.operator} ${right.toString()})`;
+        } else {
+            return value.toString();
         }
     };
 
