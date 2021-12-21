@@ -42,6 +42,15 @@ describe('(Task 2) Binary Tree', () => {
         });
     });
 
+    describe('Node addition integer to another node 1 + (3 + 4) = 12', () => {
+        const tree = NodeFactory("+", 1, NodeFactory("+", 3, 4));
+        test('Should be presented as (1 + (3 + 4))', () => {
+            expect(tree.toString()).toStrictEqual("(1 + (3 + 4))");
+        });
+        test('Should equal 8', () => {
+            expect(tree.result()).toStrictEqual(8);
+        });
+    });
 
     const tree = NodeFactory(
         "÷",

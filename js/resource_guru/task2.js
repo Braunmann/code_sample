@@ -1,7 +1,12 @@
 // In TypeScript I would prefer to do the node as Abstract class to be sure that we are using proper composition
 const AbstractNode = (operator, left, right) => {
+    const isNode = n => typeof(n) === 'object' && n.left && n.right
+
     const result = function () {
-        return operator.operation(left, right);
+        const l = isNode(left) ? left.result() : left,
+              r = isNode(right) ? right.result() : right;
+
+        return operator.operation(l, r);
     };
 
     const toString = function () {
