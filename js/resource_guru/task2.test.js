@@ -1,21 +1,60 @@
-const Node = require('./task2.js');
+const { NodeFactory } = require('./task2.js');
 
 describe('(Task 2) Binary Tree', () => {
-    const tree = Node(
+    describe('Node add 1 + 3 = 4', () => {
+        const node = NodeFactory("+", 1, 3);
+
+        test('Should be presented as (1 + 3)', () => {
+            expect(node.toString()).toStrictEqual("(1 + 3)");
+        });
+        test('Should equal 4 ', () => {
+            expect(node.result()).toStrictEqual(4);
+        });
+    });
+
+    describe('Node sub 3 - 1 = 2 ', () => {
+        const node = NodeFactory("-", 3, 1);
+        test('Should be presented as (3 - 1)', () => {
+            expect(node.toString()).toStrictEqual("(3 - 1)");
+        });
+        test('Should equal 2 ', () => {
+            expect(node.result()).toStrictEqual(2);
+        });
+    });
+
+    describe('Node div 9 / 3 = 3 ', () => {
+        const node = NodeFactory("÷", 9, 3);
+        test('Should be presented as (9 ÷ 3)', () => {
+            expect(node.toString()).toStrictEqual("(9 ÷ 3)");
+        });
+        test('Should equal 3 ', () => {
+            expect(node.result()).toStrictEqual(3);
+        });
+    });
+
+    describe('Node mul 4 * 3 = 12', () => {
+        const node = NodeFactory("x", 4, 3);
+        test('Should be presented as (4 x 3)', () => {
+            expect(node.toString()).toStrictEqual("(4 x 3)");
+        });
+        test('Should equal 12', () => {
+            expect(node.result()).toStrictEqual(12);
+        });
+    });
+
+
+    const tree = NodeFactory(
         "÷",
-        null,
-        Node(
+        NodeFactory(
             "+",
-            null,
-            Node("", 7, null, null),
-            Node(
+            7,
+            NodeFactory(
                 "x",
-                null,
-                Node("-", null, Node("", 3, null, null), Node("", 2, null, null)),
-                Node("", 5, null, null)
+                NodeFactory("-",  3, 2),
+                5
             )
         ),
-        Node("", 6, null, null)
+        6
     );
 
     test('First assertion', () => {
