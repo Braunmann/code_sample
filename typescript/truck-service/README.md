@@ -27,6 +27,7 @@ Create API with some ideas
 ### Remarks
 
 - Totally overcomplicated design
+- Need to restructure files tree
 - Handler completely to rebuild 
 - Missing integration tests
 - Missing of unit test in relationships
